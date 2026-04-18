@@ -40,6 +40,7 @@ Router.get(
   }
 );
 // protect all routes after this middleware
+Router.use(authController.protect);
 
 Router.patch("/updatePassword/", authController.updatePassword);
 Router.get("/me", userController.getMe, userController.getUser);
