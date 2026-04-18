@@ -13,48 +13,48 @@ Router.patch("/resetPassword/:token", authController.resetPassword);
 
 
  // Google Login
-Router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+// Router.get(
+//   "/google",
+//   passport.authenticate("google", { scope: ["profile", "email"] })
+// );
 
-// Google Callback
-Router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    session: false,
-    failureRedirect: "/login",
-  }),
-    (req, res) => {
-    const token = jwt.sign(
-      { id: req.user.id },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+// // Google Callback
+// Router.get(
+//   "/google/callback",
+//   passport.authenticate("google", {
+//     session: false,
+//     failureRedirect: "/login",
+//   }),
+//     (req, res) => {
+//     const token = jwt.sign(
+//       { id: req.user.id },
+//       process.env.JWT_SECRET,
+//       { expiresIn: "7d" }
+//     );
 
-    res.json({
-      status: "success",
-      token,
-      user: req.user,
-    });
-  }
-);
+//     res.json({
+//       status: "success",
+//       token,
+//       user: req.user,
+//     });
+//   }
+// );
 // protect all routes after this middleware
 
-Router.patch("/updatePassword/", authController.updatePassword);
-Router.get("/me", userController.getMe, userController.getUser);
-Router.patch("/updateMe", userController.updateMe);
-Router.delete("/deleteMe", userController.deleteMe);
+// Router.patch("/updatePassword/", authController.updatePassword);
+// Router.get("/me", userController.getMe, userController.getUser);
+// Router.patch("/updateMe", userController.updateMe);
+// Router.delete("/deleteMe", userController.deleteMe);
 
-Router.use(authController.restrictTo("admin"));
-Router.route("/")
-  .get(userController.getAllUsers)
-  .post(userController.createUser);
+// Router.use(authController.restrictTo("admin"));
+// Router.route("/")
+//   .get(userController.getAllUsers)
+//   .post(userController.createUser);
 
-Router.route("/:id")
-  .get(userController.getUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+// Router.route("/:id")
+//   .get(userController.getUser)
+//   .patch(userController.updateUser)
+//   .delete(userController.deleteUser);
 
 
 module.exports = Router;
