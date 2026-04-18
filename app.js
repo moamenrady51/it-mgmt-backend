@@ -47,6 +47,7 @@ app.use(passport.initialize());
 // });
 
 // Routes
+app.use("/api/v1/users", userRoutes);
 
 // app.use("/api/auth", authRoutes);
 app.use("/api/v1/tickets", ticketRoutes);
@@ -63,7 +64,6 @@ app.use("/api/v1/backlogs/:backlogId/tasks", taskRoutes);
 app.use("/api/v1/sprints/:sprintId/tasks", taskRoutes);
 
 app.use("/api/v1/stock", stockRoutes);
-app.use("/api/v1/users", userRoutes);
 // app.use("/api/auth", userRoutes);
 
 app.get("/", (req, res) => {
