@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const Router = express.Router();
 
+Router.get("/", userController.getAllUsers);
 Router.post("/signup", authController.signup);
 Router.post("/login", authController.login);
 Router.post("/forgotPassword", authController.forgetPassword);
